@@ -1,5 +1,6 @@
 # AI-Learning
 Q-Learning, Markov Decision Processes and an assignment in Python
+
 ## Markov Decision Process
 The MDP is when an agent uses reinforcement learning to decide the best action to take in the current context. An MDP contains:
 
@@ -64,3 +65,28 @@ where ```s_a``` is ```s``` changed according to (1) and (2).
 Turn a rating ![image](https://user-images.githubusercontent.com/78870995/160617361-af7aac2c-d381-4c2c-a2a9-5266248cd418.png)
 of how delicious  ```a``` is into:
 ![image](https://user-images.githubusercontent.com/78870995/160617442-90603919-4d95-41e8-b1eb-abe558631cae.png)
+
+Add look ahead ```n``` to ```Q_n```: for ![image](https://user-images.githubusercontent.com/78870995/160618551-55197733-e40f-48b0-8b6c-a7e82da43f69.png)
+and ![image](https://user-images.githubusercontent.com/78870995/160618611-2ac32ede-3f72-44a5-a321-e7badcd688cc.png)
+
+But what if we dont know ```r0``` or ```δ``` (but know the discount γ)
+
+Q-Learning corrects some initial arbitrary valuation ![image](https://user-images.githubusercontent.com/78870995/160619042-db4f9c59-fb1a-412b-8694-622bb393e16b.png)
+using an initial state ```s1``` and an ε-greedy policy to choose an action ```a_n``` for the update.
+![image](https://user-images.githubusercontent.com/78870995/160619319-c154facf-c2c7-4045-b942-809c722d466f.png)
+
+## Q-Learning
+QL is a basic form of RL which uses Q-values (also called action values) to iteratively improve the behaviour of the learning agent.
+
+- Q-values are defined for state and actions. ```Q(S,A)``` is an estimation of how good is it to take the action ```A``` at the state ```S```. This estimation of ```Q(S,A)``` will be iteratively computed using the TD-Update rule which we will see.
+- Rewards and Episodes: An agent over the course of its lifetime starts from a start state, makes a number of transitions from its current state to a next state based on its choice of action and also the environment the agent is interacting in. At every step of the transition, the agent from a state takes an action, observes a reward from the environment and then transits to another state. If at any point of time the agent ends up in one of the terminating states, that means there are no further transitions possible. This is said to be the completion of an episode.
+- Temporal Difference or TD-Update can be written as:
+![image](https://user-images.githubusercontent.com/78870995/160621663-8ab41421-ae6e-446f-9b2b-50fa323a0567.png)
+This update rule to estiamte the value of Q is applied at every step of the agents interaction with the environment.
+  - ```S```: current state of the agent
+  - ```A```: current action picked according to a policy
+  - ```S'```: next state where the agent ends up
+  - ```A'```: next best action to be picked using current Q-value estimation i.e. pick the action with the maximum Q-value in the next state.
+  - ```R```: current reward observed from the environment in response of current action. 
+  - ```γ```(>0 and <=1): dicsounting factor for future rewards. Future rewards are less valuable than current rewards so they must be discounted. Since Q-value is an estimation of expected rewards from a state, the discounting rule applies here as well.
+  - ```α```: step length taken to update the estimation of ```Q(S,A)```.
