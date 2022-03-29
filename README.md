@@ -50,6 +50,12 @@ RL is about taking suitable action to maximize reward. It is used to find the be
 - - The model keeps learning
 - - The best solution is decided based on the maximum reward.
 
+In an MDP consisting of ```<S,A,T,R>```:
+- The state space ```S``` is a set of all the states that the agent can transition to.
+- The action space ```A``` is a set of all the actions the agent can do in a certain environment
+
+In a Grid World context, the agent starts from the ```START``` state and uses reinforcement learning to reach a rewarding grid. The episode ends when the agent reaches the goal and obtains +1 reward or reaches the negative punishment -1 such as going through the fire. At every time setep, the agent is allowed to choose from a set of actions (the action space ```A = [Right, Left, Up, Down]```). The decision on which action to take is either decided by a calculated value (Value Iteration) or an iteratively evaluated and updated state-action mapping (Policy)
+
 ### MDP Example: Restaurant
 
 - Action: a menu item ordered
@@ -90,3 +96,6 @@ This update rule to estiamte the value of Q is applied at every step of the agen
   - ```R```: current reward observed from the environment in response of current action. 
   - ```γ```(>0 and <=1): dicsounting factor for future rewards. Future rewards are less valuable than current rewards so they must be discounted. Since Q-value is an estimation of expected rewards from a state, the discounting rule applies here as well.
   - ```α```: step length taken to update the estimation of ```Q(S,A)```.
+- Choosing the action to take using ε-greedy policy. This is a very simple policy of choosing actions using current Q-value estimations which goes as follows:
+  - With probability ```(1-ε)``` choose the action which ahs the highest Q-value.
+  - With probability ```(ε)```   choose any action at random.
