@@ -94,8 +94,8 @@ This update rule to estiamte the value of Q is applied at every step of the agen
   - ```S'```: next state where the agent ends up
   - ```A'```: next best action to be picked using current Q-value estimation i.e. pick the action with the maximum Q-value in the next state.
   - ```R```: current reward observed from the environment in response of current action. 
-  - ```γ```(>0 and <=1): dicsounting factor for future rewards. Future rewards are less valuable than current rewards so they must be discounted. Since Q-value is an estimation of expected rewards from a state, the discounting rule applies here as well.
+  - ```γ```(>0 and <=1): discounting factor for future rewards. Future rewards are less valuable than current rewards so they must be discounted. Since Q-value is an estimation of expected rewards from a state, the discounting rule applies here as well.
   - ```α```: step length taken to update the estimation of ```Q(S,A)```.
 - Choosing the action to take using ε-greedy policy. This is a very simple policy of choosing actions using current Q-value estimations which goes as follows:
-  - With probability ```(1-ε)``` choose the action which ahs the highest Q-value.
-  - With probability ```(ε)```   choose any action at random.
+  - With probability ```(1-ε)``` choose the action which hass the highest Q-value. (5.1 in assignment)
+  - With probability ```(ε)```   choose any action at random. (5.2 in assignment)
